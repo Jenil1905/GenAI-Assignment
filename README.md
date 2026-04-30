@@ -67,5 +67,4 @@ GenAi-Assignment1/
 - ⚠️ Graceful API error handling
 - 🔑 API key stored in environment variables only
 
-## Screenshots
-<!-- Add screenshots here -->
+
