@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PERSONAS, PERSONA_ORDER } from './personas';
 import Chat from './Chat';
 import './App.css';
@@ -13,6 +13,14 @@ const ORB_COLORS = {
 export default function App() {
   const [activePersonaId, setActivePersonaId] = useState('anshuman');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Wake up Render backend on initial load
+  useEffect(() => {
+    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    fetch(`${API_BASE}/api/health`).catch(() => {
+      // Ignore errors, we just want to wake it up
+    });
+  }, []);
 
   const persona = PERSONAS[activePersonaId];
   const orbs = ORB_COLORS[activePersonaId];
